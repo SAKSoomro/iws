@@ -1,0 +1,20 @@
+<div class="form-group">
+  <label for="title">Title</label>
+  <input
+    required
+    value="<%= link.title %>"
+    type="text"
+    name="title"
+    id="title"
+    class="form-control"
+  />
+</div>
+<div class="form-group">
+  <label for="markdown">Link</label>
+  <textarea required name="link" id="link" class="form-control">
+<%= link.link %></textarea
+  >
+</div>
+
+<a href="/" class="btn btn-secondary">Cancel</a>
+<button type="submit" class="btn btn-primary">Save</button>

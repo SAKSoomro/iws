@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script
+      src="https://kit.fontawesome.com/e6c62307c0.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Blog</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="/logo.png" alt="" />
+      </div>
+      <div class="header-left">
+        <div class="contact">
+          <a href="#">contact us</a>
+        </div>
+        <div class="hello-user">
+          <p>Hello! user</p>
+        </div>
+        <div class="avatar">
+          <a href="admin.html"><img src="/profile-icon.png" alt="" /></a>
+        </div>
+      </div>
+    </header>
+    <div class="custom-container">
+      <div class="sidebar">
+        <% links.forEach(link => { %>
+
+        <!-- <a href="<%= link.link %>"><%= link.title %></a> -->
+        <div class="c-links">
+          <a href="<%= link.link %>"
+            ><%= link.title %>
+            <div>
+              <a class="btn-edit" href="links/edit-link/<%= link.id %>"
+                ><i class="fa fa-pencil" style="color: rgb(18, 18, 160)"></i
+              ></a>
+              <form action="/links/<%= link.id %>?_method=DELETE" method="POST">
+                <button
+                  type="submit"
+                  class="fa fa-trash"
+                  style="border: none; color: red; cursor: pointer"
+                ></button>
+              </form>
+            </div>
+          </a>
+        </div>
+        <% }) %>
+
+        <a class="publish" href="/articles/new">PUBLISH</a>
+        <a class="publish" href="/links/new-link">ADD LINK</a>
+      </div>
+      <div class="custom-content">
+        <div class="container">
+          <% articles.forEach(article => { %>
+          <div class="card mt-4">
+            <div class="card-body">
+              <h4 class="card-title"><%= article.title %></h4>
+              <div class="card-subtitle text-muted mb-2">
+                <%= article.createdAt.toLocaleDateString() %>
+              </div>
+              <div class="card-text mb-2"><%= article.description %></div>
+              <a href="articles/<%= article.slug %>" class="btn btn-primary"
+                >Read More</a
+              >
+              <a href="articles/edit/<%= article.id %>" class="btn btn-info"
+                >Edit</a
+              >
+              <form
+                action="/articles/<%= article.id %>?_method=DELETE"
+                method="POST"
+                class="d-inline"
+              >
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
